@@ -1,12 +1,11 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-module.exports = function(paths) {
+module.exports = function(sassPaths) {
     return {
         module: {
             rules: [
                 {
                     test: /\.scss$/,
-                    include: paths,
                     use: ExtractTextPlugin.extract({
                         publicPath: '../',
                         fallback: 'style-loader',
@@ -18,13 +17,15 @@ module.exports = function(paths) {
                                     plugins: [ require('autoprefixer')() ]
                                 }
                             },
-                            'sass-loader'
+                            {
+                                loader: 'sass-loader',
+                                options: { includePaths: sassPaths }
+                            }
                         ]
                     })
                 },
                 {
                     test: /\.css$/,
-                    include: paths,
                     use: ExtractTextPlugin.extract({
                         publicPath: '../',
                         fallback: 'style-loader',

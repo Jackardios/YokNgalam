@@ -1,14 +1,16 @@
-module.exports = function(paths) {
+module.exports = function(sassPaths) {
     return {
         module: {
             rules: [
                 {
                     test: /\.scss$/,
-                    include: paths,
                     use: [
                         'style-loader',
                         'css-loader',
-                        'sass-loader'
+                        {
+                            loader: 'sass-loader',
+                            options: { includePaths: sassPaths }
+                        }
                     ]
                 }
             ]
