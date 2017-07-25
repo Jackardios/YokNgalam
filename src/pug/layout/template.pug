@@ -1,0 +1,44 @@
+include ../modules/head
+include ../modules/header
+include ../modules/footer
+include ../modules/scripts
+
+doctype html
+html(lang="ru")
+    block head
+        head
+            +head({
+                "title": "Webpack test project",
+                "author": "Salavat Salahutdinov",
+                "description": "Best webpack project :)"
+            })
+    block body
+        body
+            block header
+                +header({
+                    "menu": [
+                        {
+                            "text": "Главная",
+                            "href": "#"
+                        },
+                        {
+                            "text": "Laravel",
+                            "href": "#"
+                        },
+                        {
+                            "text": "Vue",
+                            "href": "#"
+                        },
+                        {
+                            "text": "Bourbon",
+                            "href": "#"
+                        },
+                    ]
+                })
+            block content
+                div IT IS CONTENT!!!
+            block footer
+                +footer()
+            block scripts
+                +scripts()
+

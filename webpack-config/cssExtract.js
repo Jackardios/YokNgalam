@@ -10,7 +10,16 @@ module.exports = function(paths) {
                     use: ExtractTextPlugin.extract({
                         publicPath: '../',
                         fallback: 'style-loader',
-                        use: ['css-loader', 'sass-loader']
+                        use: [
+                            'css-loader',
+                            {
+                                loader: 'postcss-loader',
+                                options: {
+                                    plugins: [ require('autoprefixer')() ]
+                                }
+                            },
+                            'sass-loader'
+                        ]
                     })
                 },
                 {
@@ -19,7 +28,15 @@ module.exports = function(paths) {
                     use: ExtractTextPlugin.extract({
                         publicPath: '../',
                         fallback: 'style-loader',
-                        use: 'css-loader'
+                        use: [
+                            'css-loader',
+                            {
+                                loader: 'postcss-loader',
+                                options: {
+                                    plugins: [ require('autoprefixer')() ]
+                                }
+                            }
+                        ]
                     })
                 },
             ]
