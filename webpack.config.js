@@ -5,6 +5,7 @@ const path = require("path");
 const webpack = require("webpack");
 const merge = require("webpack-merge");
 const neatPaths = require("bourbon-neat").includePaths;
+const bourbonPaths = require("bourbon").includePaths;
 
 /**
  * Importing plugins
@@ -69,13 +70,13 @@ module.exports = function(env) {
         return merge([
             common,
             uglifyJS(),
-            cssExtract([].concat(neatPaths)),
+            cssExtract([].concat(neatPaths, bourbonPaths)),
         ]);
     } else {
         return merge([
             common,
             devServer(),
-            sass([].concat(neatPaths)),
+            sass([].concat(neatPaths, bourbonPaths)),
             css(),
         ]);
     }
