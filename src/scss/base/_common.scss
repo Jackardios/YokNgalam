@@ -1,0 +1,11 @@
+@for $i from 1 through 6 {
+    h#{$i} {
+        font-weight: 600;
+    }
+}
+
+body {
+    font-size: 16px;
+    font-family: "Open Sans", Arial, sans-serif;
+    line-height: 1.5;
+}

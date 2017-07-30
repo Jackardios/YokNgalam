@@ -4,8 +4,8 @@
 const path = require("path");
 const webpack = require("webpack");
 const merge = require("webpack-merge");
-const neatPaths = require("bourbon-neat").includePaths;
-const bourbonPaths = require("bourbon").includePaths;
+
+const normalizePaths = "./node_modules/normalize-scss/sass";
 
 /**
  * Importing plugins
@@ -70,13 +70,13 @@ module.exports = function(env) {
         return merge([
             common,
             uglifyJS(),
-            cssExtract([].concat(neatPaths, bourbonPaths)),
+            cssExtract([].concat(normalizePaths)),
         ]);
     } else {
         return merge([
             common,
             devServer(),
-            sass([].concat(neatPaths, bourbonPaths)),
+            sass([].concat(normalizePaths)),
             css(),
         ]);
     }

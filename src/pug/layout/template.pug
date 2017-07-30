@@ -1,42 +1,28 @@
-include ../modules/head
-include ../modules/header
-include ../modules/footer
-include ../modules/scripts
+include ../blocks/head
+include ../blocks/header
+include ../blocks/footer
+include ../blocks/scripts
 
 doctype html
 html(lang="ru")
     block head
         head
             +head({
-                "title": "Webpack test project",
+                "title": "Test layout",
                 "author": "Salavat Salahutdinov",
-                "description": "Best webpack project :)"
+                "description": "Pug+SCSS layout",
+                "fonts": [
+                    {
+                        "href": "//fonts.googleapis.com/css?family=Open+Sans:400,400i,600",
+                        "rel": "stylesheet"
+                    }
+                ]
             })
     block body
         body
             block header
-                +header({
-                    "menu": [
-                        {
-                            "text": "Главная",
-                            "href": "#"
-                        },
-                        {
-                            "text": "Laravel",
-                            "href": "#"
-                        },
-                        {
-                            "text": "Vue",
-                            "href": "#"
-                        },
-                        {
-                            "text": "Bourbon",
-                            "href": "#"
-                        },
-                    ]
-                })
+                +header()
             block content
-                div IT IS CONTENT!!!
             block footer
                 +footer()
             block scripts
