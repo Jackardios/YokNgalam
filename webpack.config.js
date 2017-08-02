@@ -5,6 +5,10 @@ const path = require("path");
 const webpack = require("webpack");
 const merge = require("webpack-merge");
 
+/**
+ * includePaths
+ */
+const bourbonPaths = require("bourbon").includePaths;
 const normalizePaths = "./node_modules/normalize-scss/sass";
 
 /**
@@ -70,13 +74,13 @@ module.exports = function(env) {
         return merge([
             common,
             uglifyJS(),
-            cssExtract([].concat(normalizePaths)),
+            cssExtract([].concat(bourbonPaths, normalizePaths)),
         ]);
     } else {
         return merge([
             common,
             devServer(),
-            sass([].concat(normalizePaths)),
+            sass([].concat(bourbonPaths, normalizePaths)),
             css(),
         ]);
     }

@@ -1,5 +1,6 @@
 //plugins
 @import "normalize";
+@import "bourbon";
 
 //run normalize
 @include normalize();
@@ -9,13 +10,14 @@
 @import "base/reset";
 @import "base/fonts";
 @import "base/colors";
+@import "base/common";
 @import "base/mixins";
 @import "base/variables";
-
-//blocks
-@import "blocks/header";
 
 //components
 @import "components/buttons";
 @import "components/forms";
 @import "components/states";
+
+//blocks
+@import "blocks/header";
