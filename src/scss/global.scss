@@ -6,13 +6,13 @@
 @include normalize();
 
 //base
-@import "base/grid";
 @import "base/reset";
-@import "base/fonts";
-@import "base/colors";
-@import "base/common";
-@import "base/mixins";
 @import "base/variables";
+@import "base/mixins";
+@import "base/colors";
+@import "base/grid";
+@import "base/fonts";
+@import "base/common";
 
 //components
 @import "components/buttons";
