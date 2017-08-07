@@ -47,6 +47,40 @@ $grid-breakpoints: (
     margin-right: -1 * $grid-half-gutter;
 }
 
+@mixin row-flex($wrap: wrap, $align-x: center, $align-y: stretch, $reversed: false) {
+    @extend %row-flex;
+    flex-wrap: $wrap;
+
+    // X-axis alignment
+    @if ($align-x == left and $reversed == false) or
+        ($align-x == right and $reversed == true) {
+        justify-content: flex-start;
+    } @else if ($align-x == left and $reversed == true) or
+               ($align-x == right and $reversed == false) {
+        justify-content: flex-end;
+    } @else {
+        justify-content: $align-x;
+    }
+
+    // Y-axis alignment
+    @if ($align-y == top and $reversed == false) or
+        ($align-y == bottom and $reversed == true) {
+        align-items: flex-start;
+    } @else if ($align-y == top and $reversed == true) or
+               ($align-y == bottom and $reversed == false) {
+        align-items: flex-end;
+    } @else {
+        align-items: $align-y;
+    }
+
+    // Reverse
+    @if $reversed == true {
+        flex-direction: row-reverse;
+    } @else {
+        flex-direction: row;
+    }
+}
+
 // inline-block based row styles
 %row-inline-block {
     display: block;
@@ -56,78 +90,74 @@ $grid-breakpoints: (
     margin-right: -1 * $grid-half-gutter;
 }
 
+@mixin row-inline($wrap: wrap, $align-x: center, $reversed: false) {
+    @extend %row-inline-block;
+    // X-axis alignment
+    text-align: $align-x;
+
+    // Reverse
+    @if $reversed == true {
+        direction: rtl;
+    } @else if $reversed == false {
+        direction: ltr;
+    } @else {
+        direction: inherit;
+    }
+}
+
+// common mixin row()
 @mixin row($wrap: wrap, $align-x: center, $align-y: stretch, $reversed: false, $driver: flex) { // $align-y only to flex driver
 
     @if $driver == flex {
-        @extend %row-flex;
-        flex-wrap: $wrap;
-
-        // X-axis alignment
-        @if ($align-x == left and $reversed == false) or
-            ($align-x == right and $reversed == true) {
-            justify-content: flex-start;
-        } @else if ($align-x == left and $reversed == true) or
-                   ($align-x == right and $reversed == false) {
-            justify-content: flex-end;
-        } @else {
-            justify-content: $align-x;
-        }
-
-        // Y-axis alignment
-        @if ($align-y == top and $reversed == false) or
-            ($align-y == bottom and $reversed == true) {
-            align-items: flex-start;
-        } @else if ($align-y == top and $reversed == true) or
-                   ($align-y == bottom and $reversed == false) {
-            align-items: flex-end;
-        } @else {
-            align-items: $align-y;
-        }
-
-        // Reverse
-        @if $reversed == true {
-            flex-direction: row-reverse;
-        } @else {
-            flex-direction: row;
-        }
+        @include row-flex($wrap: $wrap, $align-x: $align-x, $align-y: $align-y, $reversed: $reversed);
 
     } @else if $driver == inline-block {
-        @extend %row-inline-block;
-        // X-axis alignment
-        text-align: $align-x;
+        @include row-inline($wrap: $wrap, $align-x: $align-x, $reversed: $reversed);
 
-        // Reverse
-        @if $reversed == true {
-            direction: rtl;
-        } @else if $reversed == false {
-            direction: ltr;
-        } @else {
-            direction: inherit;
-        }
     }
+
 }
 
-// inline-block based row
-@mixin row-inline($wrap: wrap, $align-x: center, $align-y: stretch, $reversed: false) {
-    @include row($wrap: $wrap, $align-x: $align-x, $align-y: $align-y, $reversed: $reversed, $driver: inline-block)
-}
-
-// row item
-@mixin col($cols: 1, $driver: flex, $align-y: top) { // $align-y only to inline-block driver
-    @include col-width($cols);
+// common col styles
+%col {
     box-sizing: border-box;
     margin-left: $grid-half-gutter;
     margin-right: $grid-half-gutter;
+}
 
-    @if $driver == inline-block {
-        display: inline-block;
-        font-size: 1rem;
-        vertical-align: $align-y;
+// flexbox based row item
+@mixin col-flex($cols: 1, $align-y: auto) {
+    @extend %col;
+    @include col-width($cols);
+    @if $align-y == top {
+        align-self: flex-start;
+    } @else if $align-y == bottom {
+        align-self: flex-end;
+    } @else {
+        align-self: $align-y;
     }
-
 }
 
 // inline-block based row item
 @mixin col-inline($cols: 1, $align-y: top) {
-    @include col($cols: $cols, $driver: inline-block, $align-y: $align-y);
+    @extend %col;
+    @include col-width($cols);
+    display: inline-block;
+    font-size: 1rem;
+    @if $align-y == center {
+        vertical-align: middle;
+    } @else {
+        vertical-align: $align-y;
+    }
+}
+
+// common mixin col()
+@mixin col($cols: 1, $driver: flex, $align-y: top) {
+
+    @if $driver == flex {
+        @include col-flex($cols: $cols, $align-y: $align-y);
+    } @else if $driver == inline-block {
+        @include col-inline($cols: $cols, $align-y: $align-y);
+    }
+
 }
