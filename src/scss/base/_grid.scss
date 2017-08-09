@@ -9,12 +9,18 @@ $grid-breakpoints: (
     md: 720px,
     lg: 960px,
     xl: 1024px,
-    xx: 1280px
+    xx: 1200px
 );
 
 // helpers
-@mixin for-size($size-name) {
+@mixin for-size-bigger-than($size-name) {
     @media screen and (min-width: map-get($grid-breakpoints, $size-name)) {
+        @content;
+    }
+}
+
+@mixin for-size-smaller-than($size-name) {
+    @media screen and (max-width: map-get($grid-breakpoints, $size-name) - 1) {
         @content;
     }
 }
@@ -28,9 +34,12 @@ $grid-breakpoints: (
     margin-left: auto;
     margin-right: auto;
     box-sizing: border-box;
+    transition: max-width .12s ease;
     @each $name, $value in $grid-breakpoints {
-        @include for-size($name) {
-            max-width: $value;
+        @if $name != xs {
+            @include for-size-bigger-than($name) {
+                max-width: $value;
+            }
         }
     }
 }
@@ -47,7 +56,7 @@ $grid-breakpoints: (
     margin-right: -1 * $grid-half-gutter;
 }
 
-@mixin row-flex($wrap: wrap, $align-x: center, $align-y: stretch, $reversed: false) {
+@mixin row-flex($wrap: wrap, $align-x: left, $align-y: stretch, $reversed: false) {
     @extend %row-flex;
     flex-wrap: $wrap;
 
@@ -90,7 +99,7 @@ $grid-breakpoints: (
     margin-right: -1 * $grid-half-gutter;
 }
 
-@mixin row-inline($wrap: wrap, $align-x: center, $reversed: false) {
+@mixin row-inline($wrap: wrap, $align-x: left, $reversed: false) {
     @extend %row-inline-block;
     // X-axis alignment
     text-align: $align-x;
@@ -106,7 +115,7 @@ $grid-breakpoints: (
 }
 
 // common mixin row()
-@mixin row($wrap: wrap, $align-x: center, $align-y: stretch, $reversed: false, $driver: flex) { // $align-y only to flex driver
+@mixin row($wrap: wrap, $align-x: left, $align-y: stretch, $reversed: false, $driver: flex) { // $align-y only to flex driver
 
     @if $driver == flex {
         @include row-flex($wrap: $wrap, $align-x: $align-x, $align-y: $align-y, $reversed: $reversed);
@@ -138,12 +147,32 @@ $grid-breakpoints: (
     }
 }
 
+@mixin col-flex-change($cols, $align-y: auto) {
+    @include col-width($cols);
+    @if $align-y == top {
+        align-self: flex-start;
+    } @else if $align-y == bottom {
+        align-self: flex-end;
+    } @else {
+        align-self: $align-y;
+    }
+}
+
 // inline-block based row item
 @mixin col-inline($cols: 1, $align-y: top) {
     @extend %col;
     @include col-width($cols);
     display: inline-block;
     font-size: 1rem;
+    @if $align-y == center {
+        vertical-align: middle;
+    } @else {
+        vertical-align: $align-y;
+    }
+}
+
+@mixin col-inline-change($cols, $align-y: top) {
+    @include col-width($cols);
     @if $align-y == center {
         vertical-align: middle;
     } @else {

@@ -63,8 +63,12 @@ const common = merge([
             })
         ],
     },
-    images(),
-    fonts(),
+    images([
+        path.resolve(PATHS.src, 'assets/images')
+    ]),
+    fonts([
+        path.resolve(PATHS.src, 'assets/fonts')
+    ]),
     babel(),
     pug(),
 ]);

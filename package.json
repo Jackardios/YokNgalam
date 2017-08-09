@@ -1,7 +1,7 @@
 {
   "name": "webpack-frontend-base",
   "version": "1.0.0",
-  "description": "Test pug scss layout",
+  "description": "Pug + SCSS webpack frontend base",
   "main": "index.js",
   "scripts": {
     "prod": "webpack -p --env=production",
@@ -17,6 +17,8 @@
     "bourbon": "^4.3.4",
     "bourbon-neat": "^2.1.0",
     "css-loader": "^0.28.4",
+    "css-mqpacker": "^6.0.1",
+    "cssnano": "^3.10.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.29.0",

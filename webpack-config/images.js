@@ -1,9 +1,10 @@
-module.exports = function() {
+module.exports = function(paths) {
     return {
         module: {
             rules: [
                 {
                     test: /\.(jpe?g|png|gif|svg)$/i,
+                    include: paths,
                     use: [
                         {
                             loader: 'file-loader',
@@ -16,7 +17,7 @@ module.exports = function() {
                             loader: 'image-webpack-loader'
                         }
                     ]
-                    
+
                 }
             ]
         }
