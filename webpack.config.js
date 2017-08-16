@@ -1,5 +1,5 @@
 /**
- * Importing libs
+ * Import libs
  */
 const path = require("path");
 const webpack = require("webpack");
@@ -8,20 +8,21 @@ const merge = require("webpack-merge");
 /**
  * includePaths
  */
-const bourbonPaths = require("bourbon").includePaths;
+const neatPaths = require("bourbon-neat").includePaths;
 const normalizePaths = "./node_modules/normalize-scss/sass";
 
 /**
- * Importing plugins
+ * Import plugins
  */
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 
 /**
- * Importing partial configurations
+ * Import partial configurations
  */
 const cssExtract = require("./webpack-config/cssExtract");
 const devServer = require("./webpack-config/devServer");
 const uglifyJS = require("./webpack-config/uglifyJS");
+const svgSprites = require("./webpack-config/svgSprites");
 const images = require("./webpack-config/images");
 const fonts = require("./webpack-config/fonts");
 const babel = require("./webpack-config/babel");
@@ -37,6 +38,7 @@ const PATHS = {
     src: path.join(__dirname, "src"),
     dist: path.join(__dirname, "dist"),
     entries: path.join(__dirname, "src/js/entries"),
+    assets: path.join(__dirname, "src/assets"),
 };
 
 /**
@@ -60,15 +62,21 @@ const common = merge([
             }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'common'
+            }),
+            new webpack.ProvidePlugin({
+                svgxuse: 'svgxuse'
             })
         ],
     },
     images([
-        path.resolve(PATHS.src, 'assets/images')
+        path.resolve(PATHS.assets, 'images')
     ]),
     fonts([
-        path.resolve(PATHS.src, 'assets/fonts')
+        path.resolve(PATHS.assets, 'fonts')
     ]),
+    svgSprites({
+        icons: path.resolve(PATHS.assets, 'icons')
+    }),
     babel(),
     pug(),
 ]);
@@ -78,13 +86,13 @@ module.exports = function(env) {
         return merge([
             common,
             uglifyJS(),
-            cssExtract([].concat(bourbonPaths, normalizePaths)),
+            cssExtract([].concat(neatPaths, normalizePaths)),
         ]);
     } else {
         return merge([
             common,
             devServer(),
-            sass([].concat(bourbonPaths, normalizePaths)),
+            sass([].concat(neatPaths, normalizePaths)),
             css(),
         ]);
     }

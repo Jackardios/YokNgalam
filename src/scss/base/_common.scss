@@ -1,5 +1,18 @@
 body {
     font-size: 16px;
-    font-family: "Open Sans", Arial, sans-serif;
-    line-height: 1.5;
+    // font-family: "...", sans-serif;
+    // line-height: 1.5;
+}
+
+p {
+    font-size: 16px;
+    // color: "...";
+    // line-height: 1.5;
+}
+
+@for $i from 1 through 6 {
+    h#{$i} {
+        // font-family: "...", serif;
+        // font-style: normal;
+    }
 }

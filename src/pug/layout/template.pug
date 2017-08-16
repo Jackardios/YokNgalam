@@ -1,8 +1,10 @@
-include ../blocks/head
-include ../blocks/header
-include ../blocks/footer
-include ../blocks/scripts
+//- import base modules
+include ../base/svgSprite
 
+//- import blocks
+include ../blocks/head
+
+//- template
 doctype html
 html(lang="ru")
     block head
@@ -13,17 +15,15 @@ html(lang="ru")
                 "description": "Pug+SCSS layout",
                 "fonts": [
                     {
-                        "href": "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600",
+                        "href": "https://fonts.googleapis.com/css?family=Lato:300,400,400i,500,700,900",
+                        "rel": "stylesheet"
+                    },
+                    {
+                        "href": "https://allfont.ru/allfont.css?fonts=chunkfive",
                         "rel": "stylesheet"
                     }
                 ]
             })
     block body
         body
-            block header
-                +header()
             block content
-            block footer
-                +footer()
-            block scripts
-                +scripts()

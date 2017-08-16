@@ -1,23 +1,24 @@
-//plugins
+// plugins
 @import "normalize";
-@import "bourbon";
+@import "neat";
 
-//run normalize
+// run normalize
 @include normalize();
 
-//base
-@import "base/reset";
+// base
 @import "base/variables";
-@import "base/mixins";
-@import "base/colors";
+@import "base/helpers";
+@import "base/reset";
+@import "base/common";
 @import "base/grid";
 @import "base/fonts";
-@import "base/common";
+@import "base/animations";
 
-//components
+// components
 @import "components/buttons";
 @import "components/forms";
 @import "components/states";
+@import "components/icons";
 
-//blocks
-@import "blocks/header";
+// blocks
+// @import "blocks/...";
