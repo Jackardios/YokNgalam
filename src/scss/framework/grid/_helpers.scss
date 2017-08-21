@@ -1,0 +1,27 @@
+// helpers
+@function get-grid-value($key, $grid: $default-grid) {
+    $value: map-get($grid, $key);
+    @if $value == null {
+        $value: map-get($default-grid, $key);
+    }
+    @return $value;
+
+}
+
+@function col-width($cols, $grid: $default-grid) {
+    $grid-gutter: get-grid-value(gutter, $grid);
+    $grid-cols: get-grid-value(cols, $grid);
+
+    $width: 0;
+
+    @if $grid-gutter == 0 {
+        $width: #{100% / $grid-cols * $cols};
+    } @else if unit($grid-gutter) == '%' {
+        $width: (100% / $grid-cols * $cols) - $grid-gutter;
+    } @else {
+        $width: calc(#{100% / $grid-cols * $cols} - #{$grid-gutter});
+    }
+
+    @return $width;
+
+}

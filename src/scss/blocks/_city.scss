@@ -1,0 +1,48 @@
+$city-grid: (
+    driver: inline-block,
+    align-x: left,
+    gutter: 30px,
+    cols: 12,
+);
+
+.city {
+    @include container;
+    &__wrap {
+        background: rgba(255, 255, 255, .9);
+        padding-top: 75px;
+        padding-bottom: 100px;
+    }
+    &__content {
+        @include row($grid: $city-grid);
+    }
+    &__image {
+        padding: 0 0 0 20px;
+        @include col(5, $grid: $city-grid);
+        img {
+            width: 100%;
+        }
+        @include for-size-smaller-than(lg) {
+            display: none;
+        }
+    }
+    &__text {
+        padding: 0 10px 0 60px;
+        @include col(7, $grid: $city-grid);
+        @include for-size-smaller-than(lg) {
+            padding: 0;
+            @include col-change(12, $grid: $city-grid);
+        }
+    }
+    &__title {
+        color: #29d9c2;
+        font-size: 60px;
+        margin: 0 0 57px 0;
+        @include for-size-smaller-than(md) {
+            font-size: 42px;
+            margin: 0 0 37px 0;
+        }
+    }
+    &__description {
+        margin: 0;
+    }
+}

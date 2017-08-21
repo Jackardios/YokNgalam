@@ -1,0 +1,19 @@
+// settings
+$default-grid: (
+    driver: flex,
+    align-x: left,
+    align-y: top,
+    reversed: false,
+    collapse: false,
+    gutter: 30px,
+    wrap: wrap,
+    cols: 12
+);
+
+$grid-breakpoints: (
+    xs: 320px,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+);

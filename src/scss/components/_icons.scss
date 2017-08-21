@@ -1,0 +1,15 @@
+.icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    margin: 0 6px;
+    &-info {
+        fill: #c1c1c1;
+    }
+    &-search {
+        fill: #55676e;
+    }
+}

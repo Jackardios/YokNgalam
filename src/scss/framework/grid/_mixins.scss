@@ -1,0 +1,12 @@
+// mixins
+@mixin for-size-bigger-than($size-name) {
+    @media screen and (min-width: map-get($grid-breakpoints, $size-name)) {
+        @content;
+    }
+}
+
+@mixin for-size-smaller-than($size-name) {
+    @media screen and (max-width: map-get($grid-breakpoints, $size-name) - 1) {
+        @content;
+    }
+}

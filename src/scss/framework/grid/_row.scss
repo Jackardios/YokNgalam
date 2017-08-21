@@ -1,0 +1,91 @@
+// flexbox based row styles
+%row-flex {
+    display: flex;
+    box-sizing: border-box;
+}
+
+@mixin row-flex($grid: $default-grid) {
+    @extend %row-flex;
+    flex-wrap: get-grid-value(wrap, $grid);
+
+    $collapse: get-grid-value(collapse, $grid);
+    $align-x: get-grid-value(align-x, $grid);
+    $align-y: get-grid-value(align-y, $grid);
+    $reversed: get-grid-value(reversed, $grid);
+
+    // collapse
+    @if $collapse == true {
+        @include collapse($grid);
+    }
+
+    // X-axis alignment
+    @if ($align-x == left and $reversed == false) or
+        ($align-x == right and $reversed == true) {
+        justify-content: flex-start;
+    } @else if ($align-x == left and $reversed == true) or
+               ($align-x == right and $reversed == false) {
+        justify-content: flex-end;
+    } @else {
+        justify-content: $align-x;
+    }
+
+    // Y-axis alignment
+    @if ($align-y == top and $reversed == false) or
+        ($align-y == bottom and $reversed == true) {
+        align-items: flex-start;
+    } @else if ($align-y == top and $reversed == true) or
+               ($align-y == bottom and $reversed == false) {
+        align-items: flex-end;
+    } @else {
+        align-items: $align-y;
+    }
+
+    // Reverse
+    @if $reversed == true {
+        flex-direction: row-reverse;
+    } @else {
+        flex-direction: row;
+    }
+}
+
+// inline-block based row styles
+%row-inline-block {
+    display: block;
+    box-sizing: border-box;
+}
+
+@mixin row-inline($grid: $default-grid) {
+    @extend %row-inline-block;
+
+    // X-axis alignment
+    text-align: get-grid-value(align-x, $grid);
+
+    $collapse: get-grid-value(collapse, $grid);
+    $reversed: get-grid-value(reversed, $grid);
+
+    // collapse
+    @if $collapse == true {
+        @include collapse($grid);
+    }
+
+    // Reverse
+    @if $reversed == true {
+        direction: rtl;
+    } @else if $reversed == false {
+        direction: ltr;
+    } @else {
+        direction: inherit;
+    }
+}
+
+// common mixin row()
+@mixin row($grid: $default-grid) { // $align-y only to flex driver
+
+    $driver: get-grid-value(driver, $grid);
+    @if $driver == flex {
+        @include row-flex($grid: $grid);
+    } @else if $driver == inline-block {
+        @include row-inline($grid: $grid);
+    }
+
+}

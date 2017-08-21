@@ -1,0 +1,6 @@
+// collapse
+@mixin collapse($grid: $default-grid, $margin: none) {
+    $grid-half-gutter: get-grid-value(gutter, $grid) / 2;
+    margin-left: -1 * $grid-half-gutter;
+    margin-right: -1 * $grid-half-gutter;
+}

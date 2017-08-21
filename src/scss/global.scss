@@ -5,14 +5,16 @@
 // run normalize
 @include normalize();
 
+// framework
+@import "framework/helpers";
+@import "framework/grid";
+@import "framework/animations";
+
 // base
 @import "base/variables";
-@import "base/helpers";
 @import "base/reset";
 @import "base/common";
-@import "base/grid";
 @import "base/fonts";
-@import "base/animations";
 
 // components
 @import "components/buttons";
@@ -22,3 +24,9 @@
 
 // blocks
 // @import "blocks/...";
+@import "blocks/hero";
+@import "blocks/header";
+@import "blocks/city";
+@import "blocks/destination";
+@import "blocks/ittinery";
+@import "blocks/promo";

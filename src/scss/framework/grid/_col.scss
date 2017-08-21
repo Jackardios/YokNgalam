@@ -1,0 +1,168 @@
+// Convert list of col numbers to media map
+@function list-to-media-map($list) {
+    $breakpoints: map-keys($grid-breakpoints);
+    $list-length: length($list);
+    $breakpoints-length: length($breakpoints);
+
+    @if ($list-length > $breakpoints-length) {
+        @warn "The number of elements in the $cols list is greater than $breakpoints, the remaining elements will be ignored";
+    }
+
+    $media-map: ();
+    @for $i from 1 through min($list-length, $breakpoints-length) {
+        $breakpoint: nth($breakpoints, $i * -1);
+        $cols: nth($list, $i);
+
+        $media-map: map-merge($media-map, ($breakpoint: $cols));
+    }
+    @return $media-map;
+}
+
+// col-media
+@mixin col-media($cols: none, $grid: none) {
+    @if $cols == none {
+        @error "No $media-map argument passed";
+    }
+
+    @if $grid == none {
+        @error "No $grid argument passed";
+    }
+
+    $cols-type: type-of($cols);
+    @if ($cols-type == "number") {
+        width: col-width($cols, $grid);
+    } @else {
+        @if ($cols-type == "list") {
+            $cols: list-to-media-map($cols);
+        }
+
+        $i: 1;
+        @each $name, $value in $cols {
+            @if (($value != none) and ($value != null)) {
+                @if ($i == 1) {
+                    width: col-width($value, $grid);
+                } @else {
+                    @include for-size-smaller-than($name) {
+                        @include col-change($cols: $value, $grid: $grid);
+                    }
+                }
+                $i: $i + 1;
+            }
+        }
+    }
+}
+
+// flexbox based row item
+@mixin col-flex($cols: 1, $align-y: none, $grid: $default-grid) {
+    box-sizing: border-box;
+
+    $grid-half-gutter: get-grid-value(gutter, $grid) / 2;
+    margin-left: $grid-half-gutter;
+    margin-right: $grid-half-gutter;
+
+    @include col-media($cols: $cols, $grid: $grid);
+
+    @if $align-y == none {
+        $align-y: get-grid-value(align-y, $grid);
+    }
+
+    @if $align-y == top {
+        align-self: flex-start;
+    } @else if $align-y == bottom {
+        align-self: flex-end;
+    } @else if $align-y == middle {
+        align-self: center;
+    } @else {
+        align-self: $align-y;
+    }
+}
+
+@mixin col-flex-change($cols, $align-y: none, $grid: $default-grid) {
+    @if type-of($cols) != "number" {
+        @error "The argument $cols must be a number";
+    }
+
+    width: col-width($cols, $grid);
+
+    $grid-half-gutter: get-grid-value(gutter, $grid) / 2;
+    margin-left: $grid-half-gutter;
+    margin-right: $grid-half-gutter;
+
+    @if $align-y != none {
+        @if $align-y == top {
+            align-self: flex-start;
+        } @else if $align-y == bottom {
+            align-self: flex-end;
+        } @else if $align-y == middle {
+            align-self: center;
+        } @else {
+            align-self: $align-y;
+        }
+    }
+}
+
+// inline-block based row item
+// WARNING: There is a space between inline-blocks
+@mixin col-inline($cols: 1, $align-y: none, $grid: $default-grid) {
+    box-sizing: border-box;
+    display: inline-block;
+
+    $grid-half-gutter: get-grid-value(gutter, $grid) / 2;
+    margin-left: $grid-half-gutter;
+    margin-right: $grid-half-gutter;
+
+    @include col-media($cols: $cols, $grid: $grid);
+
+    @if $align-y == none {
+        $align-y: get-grid-value(align-y, $grid);
+    }
+
+    @if $align-y == center {
+        vertical-align: middle;
+    } @else {
+        vertical-align: $align-y;
+    }
+}
+
+@mixin col-inline-change($cols, $align-y: none, $grid: $default-grid) {
+    @if type-of($cols) != "number" {
+        @error "The argument $cols must be a number";
+    }
+    width: col-width($cols, $grid);
+
+    $grid-half-gutter: get-grid-value(gutter, $grid) / 2;
+    margin-left: $grid-half-gutter;
+    margin-right: $grid-half-gutter;
+
+    @if $align-y != none {
+        @if $align-y == center {
+            vertical-align: middle;
+        } @else {
+            vertical-align: $align-y;
+        }
+    }
+}
+
+// common mixin col()
+@mixin col($cols: 1, $align-y: none, $grid: $default-grid) {
+
+    $driver: get-grid-value(driver, $grid);
+    @if $driver == flex {
+        @include col-flex($cols: $cols, $align-y: $align-y, $grid: $grid);
+    } @else if $driver == inline-block {
+        @include col-inline($cols: $cols, $align-y: $align-y, $grid: $grid);
+    }
+
+}
+
+// common mixin col-change()
+@mixin col-change($cols: 1, $align-y: none, $grid: $default-grid) {
+
+    $driver: get-grid-value(driver, $grid);
+    @if $driver == flex {
+        @include col-flex-change($cols: $cols, $align-y: $align-y, $grid: $grid);
+    } @else if $driver == inline-block {
+        @include col-inline-change($cols: $cols, $align-y: $align-y, $grid: $grid);
+    }
+
+}

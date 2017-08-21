@@ -1,18 +1,19 @@
 body {
     font-size: 16px;
-    // font-family: "...", sans-serif;
-    // line-height: 1.5;
+    font-family: "Lato", Arial, sans-serif;
+    line-height: 1.5;
 }
 
 p {
     font-size: 16px;
-    // color: "...";
-    // line-height: 1.5;
+    line-height: 35px;
+    color: #777;
 }
 
 @for $i from 1 through 6 {
     h#{$i} {
-        // font-family: "...", serif;
-        // font-style: normal;
+        font-family: "ChunkFive", serif;
+        font-style: normal;
+        letter-spacing: .04em;
     }
 }

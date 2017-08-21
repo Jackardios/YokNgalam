@@ -1,0 +1,54 @@
+section.destination
+    .destination__container
+        .destination__top
+            h2.destination__title
+                | Des
+                span.accent tination
+            a.destination__info(href="#")
+                +svgSprite(require('../../assets/icons/info.svg'), "icon icon-info")
+                | see basic regulation
+        p.destination__description.
+            Being around by many mountain, Malang not only came with mountain vacation, but our beach, cultural spot, and Human Interest is worth to experienced.
+        .destination__controls
+            .destination-search
+                input.destination-search__input(type="text" placeholder="search destination")
+                +svgSprite(require('../../assets/icons/search.svg'), "destination-search__icon icon icon-search")
+            .destination-sort
+                a.destination-sort__param.destination-sort__param--active All place
+                span.destination-sort__separator /
+                a.destination-sort__param(href="#") Recomended place
+    .destination__wrap
+        .destination-list
+            a.destination-item.destination-item--hero(
+                style="background-image: url(" + require('../../assets/images/destination-hero.jpg') + ")"
+                href="#")
+                .destination-item-see-more
+                    | see more
+                    +svgSprite(require('../../assets/icons/arrow.svg'), "destination-item-see-more__icon icon")
+                .destination-item__info-block
+                    img(src=require('../../assets/images/carousel.svg') width="86")
+                    h3.destination-item__title Batu
+                    p.destination-item__text.
+                        is a city located in East Java Province of Indonesia. It is situated about 20 km to the northwest of Malang. 
+                        Formerly, it was a part of Malang Regency; but in 2001, Batu became an independent city. A population of 190,000 people, it lies on the southern slopes of Gunung Welirang. 
+                        Its population largely consists of Javanese.
+            a.destination-item.destination-item--medium(
+                style="background-image: url(" + require('../../assets/images/mountains.jpg') + ")"
+                href="#")
+                .destination-item__info-block
+                    img(src=require('../../assets/images/mountains.svg') width="107")
+                    h3.destination-item__title Bromo
+                    p.destination-item__text.
+                        Mount Bromo is an active volcano and part of the Tengger massif, in East Java, Indonesia. 
+                        At 2,329 metres (7,641 ft) it is not the highest peak of the massif, but is the most well known
+                .destination-item-see-more
+                    | see more
+                    +svgSprite(require('../../assets/icons/arrow.svg'), "destination-item-see-more__icon icon")
+            a.destination-item.destination-item--small(
+                style="background-image: url(" + require('../../assets/images/island.jpg') + ")"
+                href="#")
+                .destination-item__info-block
+                    img(src=require('../../assets/images/island.svg') width="84")
+                .destination-item-see-more
+                    | see more
+                    +svgSprite(require('../../assets/icons/arrow.svg'), "destination-item-see-more__icon icon")
