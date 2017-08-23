@@ -1,6 +1,33 @@
 extends ../layout/template
+include ../blocks/header
 
 block content
-    include ../blocks/hero
-    include ../blocks/city
-    include ../blocks/destination
+    +header({
+        "nav": [
+            {
+                "name": "Home",
+                "href": "#"
+            },
+            {
+                "name": "Destination",
+                "href": "#"
+            },
+            {
+                "name": "Ittinary",
+                "href": "#"
+            },
+            {
+                "name": "Review",
+                "href": "#"
+            },
+            {
+                "name": "Contact",
+                "href": "#"
+            },
+        ]
+    })
+    main
+        include ../blocks/hero
+        include ../blocks/city
+        include ../blocks/destination
+        include ../blocks/itinerary

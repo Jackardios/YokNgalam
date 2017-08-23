@@ -1,5 +1,15 @@
 .header { // TODO: Сделать бургер-кнопку для мобильных экранов
-    padding-top: 35px;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    &__container {
+        @include container($padding: 15px);
+        padding-top: 35px;
+        &::after {
+            @include clearfix;
+        }
+    }
     &__lside {
         float: left;
     }
@@ -25,9 +35,6 @@
     }
     &__profile {
         display: inline-block;
-    }
-    &::after {
-        @include clearfix;
     }
 }
 

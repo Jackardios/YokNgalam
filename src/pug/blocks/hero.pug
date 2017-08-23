@@ -1,31 +1,14 @@
 include header
 
-section.hero
-    .hero__container
-        +header({
-            "nav": [
-                {
-                    "name": "Home",
-                    "href": "#"
-                },
-                {
-                    "name": "Destination",
-                    "href": "#"
-                },
-                {
-                    "name": "Ittinary",
-                    "href": "#"
-                },
-                {
-                    "name": "Review",
-                    "href": "#"
-                },
-                {
-                    "name": "Contact",
-                    "href": "#"
-                },
-            ]
-        })
-        include promo
-                
-            
+section.hero#hero
+    .hero__layer.hero__layer-0#hero-layer-0
+    .promo#hero-layer-1
+        h1.promo__title
+            | LETS GET 
+            span.accent LOST
+        p.promo__text
+            | Malang will never dissapointed you.
+            br
+            | From every step you took you will be amazed and suddenly fallin love with Malang
+        a.promo__btn.btn(href="#itinerary") SET ITINERARY NOW
+    .hero__layer.hero__layer-2#hero-layer-2

@@ -1,24 +1,25 @@
 mixin header(data) 
     header.header
-        .header__lside
-            button.header__burger.btn
-            a.header__logo(href="#")
-                img(src=require("../../assets/images/logo.svg"))
-        .header__rside
-            nav.header__nav.nav
-                ul.nav__list
-                    each item in data.nav
-                        li.nav__item
-                            a.nav__item-link(href=item.href)= item.name
-            div.header__profile.profile
-                img.profile__icon(src=require("../../assets/images/profile-icon.jpg"))
-                ul.profile-menu
-                    li.profile-menu__item
-                        a(href="#").profile-menu__item-link Profile
-                    li.profile-menu__item
-                        a(href="#").profile-menu__item-link Settings
-                    li.profile-menu__item
-                        a(href="#").profile-menu__item-link Logout
+        .header__container
+            .header__lside
+                button.header__burger.btn
+                a.header__logo(href="#")
+                    img(src=require("../../assets/images/logo.svg"))
+            .header__rside
+                nav.header__nav.nav
+                    ul.nav__list
+                        each item in data.nav
+                            li.nav__item
+                                a.nav__item-link(href=item.href)= item.name
+                div.header__profile.profile#profile-btn
+                    img.profile__icon(src=require("../../assets/images/profile-icon.jpg"))
+                    ul.profile-menu
+                        li.profile-menu__item
+                            a(href="#").profile-menu__item-link Profile
+                        li.profile-menu__item
+                            a(href="#").profile-menu__item-link Settings
+                        li.profile-menu__item
+                            a(href="#").profile-menu__item-link Logout
                 
                 
         

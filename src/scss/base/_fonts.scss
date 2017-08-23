@@ -1,9 +1,10 @@
 @font-face {
-	font-family: "ChunkFive";
-	src: url("../assets/fonts/ChunkFive/ChunkFiveExtraBold.eot");
-	src: url("../assets/fonts/ChunkFive/ChunkFiveExtraBold.eot?#iefix")format("embedded-opentype"),
-	url("../assets/fonts/ChunkFive/ChunkFiveExtraBold.woff") format("woff"),
-	url("../assets/fonts/ChunkFive/ChunkFiveExtraBold.ttf") format("truetype");
-	font-style: normal;
-	font-weight: normal;
+    font-family: 'ChunkFive';
+    src:local('ChunkFive'),
+        url('../assets/fonts/ChunkFive/ChunkFive.woff') format('woff'),
+        url('../assets/fonts/ChunkFive/ChunkFive.svg#ChunkFive') format('svg'),
+        url('../assets/fonts/ChunkFive/ChunkFive.eot'),
+        url('../assets/fonts/ChunkFive/ChunkFive.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
 }

@@ -1,0 +1,89 @@
+$interact-grid: (
+    columns: 2,
+    gutter: 30px
+);
+
+.itinerary {
+    @include container($padding: 15px);
+    background: #fff;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    &__title {
+        text-align: center;
+        font-size: 67px;
+        color: #29d9c2;
+        margin: 0;
+        padding: 0;
+        @include for-size-smaller-than(md) {
+            font-size: 42px;
+        }
+    }
+    &__help {
+        margin-top: 58px;
+        text-align: center;
+        color: #777;
+    }
+    &__interact-wrap {
+        @include grid-container();
+        @include grid-collapse($interact-grid);
+        margin-top: 130px;
+    }
+    &-form {
+        @include grid-column(1, $interact-grid);
+        @include for-size-smaller-than(lg) {
+            @include grid-column(2, $interact-grid);
+        }
+        &__header {
+            margin: 0;
+            padding: 28px 30px;
+            background: url('../assets/images/ittinery-form-header.svg') 100% 100% no-repeat;
+            background-color: #29d9c2;
+            border-radius: 5px 5px 0 0;
+            text-align: center;
+            font-family: "Lato";
+            font-size: 18px;
+            font-weight: 900;
+            color: #fff;
+        }
+        &__main {
+            padding: 26px 30px 50px 30px;
+            background-color: #ffffa6;
+            border-radius: 0 0 5px 5px;
+        }
+        &__legend {
+            &-name, &-date {
+                font-family: "Lato";
+                font-size: 16px;
+                color: #29d9c2;
+            }
+            &-name {
+                float: left;
+                font-weight: 900;
+            }
+            &-date {
+                float: right;
+                padding: 0;
+                margin: 0;
+                cursor: pointer;
+                background: none;
+                border: none;
+                font-weight: 800;
+                &:focus {
+                    outline: none;
+                    background: rgba(#29d9c2, .15);
+                }
+            }
+            &::after {
+                @include clearfix;
+            }
+        }
+    }
+    &-list {
+        @include grid-column(1, $interact-grid);
+        @include for-size-smaller-than(lg) {
+            @include grid-column(2, $interact-grid);
+        }
+        padding: 20px;
+        background: #ddd;
+    }
+}

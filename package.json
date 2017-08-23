@@ -39,6 +39,7 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "jquery": "^3.2.1",
     "svgxuse": "^1.2.4"
   }
 }
