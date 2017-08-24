@@ -3,11 +3,32 @@ $interact-grid: (
     gutter: 30px
 );
 
+%dropzone {
+    &:empty::after {
+        content: 'Drag Destination Here';
+        display: block;
+        text-align: center;
+        font-family: "Lato";
+        font-weight: 700;
+        color: #d8cb7d;
+        outline: 4px dashed rgba(245, 233, 158, .8);
+        background-color: rgba(245, 233, 158, .4);
+        padding: 35px 20px;
+        transition: background-color .12s ease;
+    }
+
+    &.ui-droppable-hover:empty::after {
+        background-color: rgb(245, 233, 158);
+    }
+}
+
 .itinerary {
     @include container($padding: 15px);
     background: #fff;
     padding-top: 70px;
     padding-bottom: 70px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     &__title {
         text-align: center;
         font-size: 67px;
@@ -26,7 +47,7 @@ $interact-grid: (
     &__interact-wrap {
         @include grid-container();
         @include grid-collapse($interact-grid);
-        margin-top: 130px;
+        margin-top: 100px;
     }
     &-form {
         @include grid-column(1, $interact-grid);
@@ -46,7 +67,7 @@ $interact-grid: (
             color: #fff;
         }
         &__main {
-            padding: 26px 30px 50px 30px;
+            padding: 30px;
             background-color: #ffffa6;
             border-radius: 0 0 5px 5px;
         }
@@ -62,12 +83,16 @@ $interact-grid: (
             }
             &-date {
                 float: right;
+                text-align: right;
                 padding: 0;
                 margin: 0;
                 cursor: pointer;
                 background: none;
                 border: none;
                 font-weight: 800;
+                @include placeholder {
+                    color: #29d9c2;
+                }
                 &:focus {
                     outline: none;
                     background: rgba(#29d9c2, .15);
@@ -77,13 +102,105 @@ $interact-grid: (
                 @include clearfix;
             }
         }
+        &__list {
+            padding: 15px 0;
+            @extend %dropzone;
+        }
+        &__buttons {
+            margin-top: 15px;
+            text-align: right;
+            button {
+                margin-left: 15px;
+            }
+        }
     }
     &-list {
         @include grid-column(1, $interact-grid);
         @include for-size-smaller-than(lg) {
             @include grid-column(2, $interact-grid);
         }
-        padding: 20px;
-        background: #ddd;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        &__header {
+            text-align: center;
+            color: #29d9c2;
+            margin: 0;
+            padding: 15px;
+            font-family: "Lato";
+            font-size: 18px;
+            font-weight: 900;
+            &::after {
+                content: ' ';
+                display: block;
+                width: 67px;
+                height: 2px;
+                background-color: #29d9c2;
+                margin: 10px auto 0 auto;
+            }
+        }
+        &__main {
+            padding: 15px 0;
+            @extend %dropzone;
+        }
+    }
+    &-item {
+        cursor: pointer;
+        display: block;
+        padding: 12px 22px;
+        margin: 15px 0;
+        border: 1px solid #e8e8e8;
+        border-radius: 4px;
+        box-shadow: 1px 2px 3px rgba(0, 0, 0, .08);
+        background: #fff;
+        transition: border-color .12s ease;
+        transform: scale(1);
+        transition: transform .12s ease;
+        &.ui-draggable-dragging {
+            transform: scale(1.15);
+        }
+        &::after {
+            @include clearfix();
+        }
+        &__info, &__icon {
+            float: left;
+            width: 50%;
+        }
+        &__icon {
+            text-align: right;
+            img {
+                border: none;
+            }
+        }
+        &__name {
+            font-family: "Lato";
+            font-size: 24px;
+            font-weight: 300;
+            color: #626262;
+            margin: 0;
+            padding: 0;
+        }
+        &__time {
+            font-family: "Lato";
+            font-size: 14px;
+            font-weight: 300;
+            color: #b9b9b9;
+            .accent {
+                color: #23c6b6;
+            }
+        }
+        &__view {
+            display: block;
+            text-decoration: none;
+            color: #23c6b6;
+            font-family: "Lato";
+            font-weight: 600;
+            font-size: 14px;
+            &:hover {
+                color: #47d6c8;
+            }
+        }
+        &:hover {
+            border-color: #47d6c8;
+        }
     }
 }

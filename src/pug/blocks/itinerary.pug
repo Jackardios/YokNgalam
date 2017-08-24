@@ -1,3 +1,15 @@
+mixin insertItineraries(array)
+    each elem in array
+        .itinerary-item
+            .itinerary-item__info
+                h5.itinerary-item__name= elem
+                .itinerary-item__time 
+                    | estimated time: 
+                    span.accent #[<strong>5</strong>] Hours
+            .itinerary-item__icon
+                img(src=require('../../assets/images/mountains.svg') width="63")
+                a.itinerary-item__view view details
+
 section.itinerary#itinerary
     h2.itinerary__title 
         | Set 
@@ -9,8 +21,51 @@ section.itinerary#itinerary
         form.itinerary-form
             h3.itinerary-form__header Your Itinerary Title Here
             .itinerary-form__main
-                .itinerary-form__legend
-                    .itinerary-form__legend-name Day 1
-                    input.itinerary-form__legend-date(type="date")
-                .itinerary-form__input
+                .itinerary-form__group
+                    .itinerary-form__legend
+                        .itinerary-form__legend-name Day 1
+                        input.itinerary-form__legend-date.datepicker(type="text" placeholder="Choose a date")
+                    .itinerary-form__list
+                .itinerary-form__group
+                    .itinerary-form__legend
+                        .itinerary-form__legend-name Day 2
+                        input.itinerary-form__legend-date.datepicker(type="text" placeholder="Choose a date")
+                    .itinerary-form__list
+            .itinerary-form__buttons
+                button.btn.btn--big.btn--secondary
+                    +svgSprite(require('../../assets/icons/book.svg'), 'icon')
+                    | Save as PDF
+                button.btn.btn--big.btn--primary
+                    +svgSprite(require('../../assets/icons/printer.svg'), 'icon')
+                    | Print
         .itinerary-list
+            h3.itinerary-list__header List of Destination
+            .itinerary-list__controlls
+            .itinerary-list__main
+                span.itinerary-item
+                    .itinerary-item__info
+                        h5.itinerary-item__name Mt. Bromo
+                        .itinerary-item__time 
+                            | estimated time: 
+                            span.accent #[<strong>5</strong>] Hours
+                    .itinerary-item__icon
+                        img(src=require('../../assets/images/mountains.svg') width="63")
+                        a.itinerary-item__view(href="#") view details
+                span.itinerary-item
+                    .itinerary-item__info
+                        h5.itinerary-item__name Mt. Panderman
+                        .itinerary-item__time 
+                            | estimated time: 
+                            span.accent #[<strong>5</strong>] Hours
+                    .itinerary-item__icon
+                        img(src=require('../../assets/images/mountains.svg') width="63")
+                        a.itinerary-item__view(href="#") view details
+                span.itinerary-item
+                    .itinerary-item__info
+                        h5.itinerary-item__name Mt. Semeru
+                        .itinerary-item__time 
+                            | estimated time: 
+                            span.accent #[<strong>5</strong>] Hours
+                    .itinerary-item__icon
+                        img(src=require('../../assets/images/mountains.svg') width="63")
+                        a.itinerary-item__view(href="#") view details

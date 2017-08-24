@@ -64,13 +64,20 @@ const common = merge([
                 name: 'common'
             }),
             new webpack.ProvidePlugin({
-                svgxuse: 'svgxuse'
+                svgxuse: 'svgxuse',
+                $: 'jquery',
+                jQuery: 'jquery',
+                'window.$': 'jquery',
+                'window.jQuery': 'jquery'
             })
         ],
     },
     images([
         path.resolve(PATHS.assets, 'images')
-    ]),
+    ], 'images/'),
+    images([
+        path.resolve(__dirname, "node_modules/jquery-ui"),
+    ], 'images/jquery-ui/'),
     fonts([
         path.resolve(PATHS.assets, 'fonts')
     ]),

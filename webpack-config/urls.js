@@ -1,4 +1,4 @@
-module.exports = function(paths, outputPath = 'images/') {
+module.exports = function(paths) {
     return {
         module: {
             rules: [
@@ -7,17 +7,15 @@ module.exports = function(paths, outputPath = 'images/') {
                     include: paths,
                     use: [
                         {
-                            loader: 'file-loader',
+                            loader: 'url-loader',
                             options: {
-                                outputPath: outputPath,
-                                name: '[name].[ext]'
+                                limit: 100000
                             }
                         },
                         {
                             loader: 'image-webpack-loader'
                         }
                     ]
-
                 }
             ]
         }

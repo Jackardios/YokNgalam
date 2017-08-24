@@ -1,5 +1,7 @@
 import '../../scss/global.scss';
-import $ from 'jquery';
+require('webpack-jquery-ui/css');
+require('webpack-jquery-ui/datepicker');
+require('webpack-jquery-ui/droppable');
 
 function parallax(layers) {
     var scrolled = $(window).scrollTop();
@@ -35,8 +37,27 @@ window.onload = function() {
 
     // smooth scroll
     $("body").on('click', '[href*="#"]', function(e){
-        $('html,body').stop().animate({ scrollTop: $(this.hash).offset().top}, 1000);
-        e.preventDefault();
+        var hash = $(this.hash)
+        if (hash.length > 0) {
+            $('html,body').stop().animate({ scrollTop: hash.offset().top}, 1000);
+            return false;
+        }
     });
 
+    // jquery ui datepicker
+    var todayDate = new Date();
+    $(".datepicker").datepicker({
+        dateFormat: "mm/dd/yy"
+    });
+
+    // jquery ui droppable / draggable
+    $(".itinerary-item").draggable({
+        revert:true,
+        revertDuration: 300
+    });
+    $(".itinerary-form__list, .itinerary-list__main").droppable({
+        drop: function(e, ui) {
+            $(e.target).append(ui.draggable);
+        }
+    });
 }
