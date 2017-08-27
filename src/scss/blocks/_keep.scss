@@ -1,0 +1,68 @@
+$keep-grid: (
+    gutter: 0
+);
+.keep {
+    padding: 60px 0;
+    background-color: #b0e467;
+    &__container {
+        @include container(15px);
+        @include grid-container;
+    }
+    &__text {
+        @include grid-column(7, $keep-grid);
+        @include for-size-smaller-than(lg) {
+            @include grid-column(12, $keep-grid);
+        }
+    }
+    &__title {
+        font-size: 67px;
+        margin: 0;
+        padding: 0;
+        color: #fff;
+    }
+    &__description {
+        color: #fff;
+        margin: 10px 0 0 0;
+        padding: 0;
+    }
+    &__input-group {
+        margin-top: 40px;
+        @include grid-column(5, $keep-grid);
+        @include grid-container;
+        @include for-size-smaller-than(lg) {
+            @include grid-column(12, $keep-grid);
+        }
+    }
+    &__input {
+        float: left;
+        width: calc(100% - 72px);
+        height: 72px;
+        padding: 0 30px;
+        line-height: 72px;
+        font-family: "Lato";
+        font-size: 16px;
+        border: 1px solid #9dc666;
+        border-radius: 5px 0 0 5px;
+        @include placeholder {
+            font-style: italic;
+            color: #c7c7c7;
+        }
+    }
+    &__btn {
+        float: left;
+        width: 72px;
+        height: 72px;
+        text-align: center;
+        line-height: 72px;
+        color: #fff;
+        font-family: "Lato";
+        font-size: 50px;
+        background-color: #01a2a6;
+        border-radius: 0 5px 5px 0;
+        border: none;
+        transition: background-color .12s ease;
+        &:hover {
+            background-color: #078e91;
+        }
+    }
+}
