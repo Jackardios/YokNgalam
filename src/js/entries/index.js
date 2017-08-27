@@ -10,6 +10,23 @@ function parallax(layers) {
     });
 }
 
+function filterItineraryItems(itineraryCategory, itinerarySearch) {
+    var category = $(itineraryCategory).val();
+    var items = $(".itinerary-list__main .itinerary-item");
+    var searchRe = new RegExp($(itinerarySearch)
+                        .val()
+                        .replace(/\s+/g, '.*'),
+                        "i");
+
+    items
+        .hide()
+        .filter(function() {
+            var categoryTest = (category === $(this).data("category") || category === "all")
+            return searchRe.test($(this).data("name")) && categoryTest;
+        })
+        .show();
+}
+
 window.onload = function() {
     svgxuse;
 
@@ -60,4 +77,15 @@ window.onload = function() {
             $(e.target).append(ui.draggable);
         }
     });
+
+    // itinerary filter
+    var itineraryCategory = $("#itinerary-category"),
+        itinerarySearch = $("#itinerary-search");
+    itineraryCategory.change(function() {
+        filterItineraryItems(itineraryCategory, itinerarySearch);
+    });
+    itinerarySearch.keyup(function() {
+        filterItineraryItems(itineraryCategory, itinerarySearch);
+    });
+
 }

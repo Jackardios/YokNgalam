@@ -54,6 +54,8 @@ $interact-grid: (
         @include for-size-smaller-than(lg) {
             @include grid-column(2, $interact-grid);
         }
+        margin-top: 15px;
+        margin-bottom: 15px;
         &__header {
             margin: 0;
             padding: 28px 30px;
@@ -121,6 +123,52 @@ $interact-grid: (
         }
         margin-top: 15px;
         margin-bottom: 15px;
+        &__controlls {
+            .accent {
+                font-weight: 800;
+                color: #29d9c2;
+            }
+            &::after {
+                @include clearfix;
+            }
+        }
+        &__filter {
+            padding: 5px 0;
+            cursor: pointer;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            background-color: none;
+            font-weight: 500;
+            color: #bcbcbc;
+            transition: border .12s ease;
+            &:active, &:focus {
+                outline: none;
+                border-color: #29d9c2;
+            }
+        }
+        &__search {
+            float: right;
+            position: relative;
+            &-input {
+                width: 130px;
+                background: none;
+                border: 1px solid transparent;
+                border-radius: 3px;
+                padding: 5px 27px 5px 5px;
+                text-align: right;
+                &:active, &:focus {
+                    outline: none;
+                    border-color: #29d9c2;
+                }
+            }
+            &-icon {
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 14px;
+                margin: 5px;
+            }
+        }
         &__header {
             text-align: center;
             color: #29d9c2;

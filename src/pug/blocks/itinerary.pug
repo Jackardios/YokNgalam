@@ -41,31 +41,49 @@ section.itinerary#itinerary
         .itinerary-list
             h3.itinerary-list__header List of Destination
             .itinerary-list__controlls
+                span.accent sort by:
+                select.itinerary-list__filter#itinerary-category(name="itinerary-category")
+                    option(value="all") All
+                    option(value="mountain") Mountain
+                    option(value="carousel") Carousel
+                .itinerary-list__search
+                    input.itinerary-list__search-input#itinerary-search(type="text")
+                    +svgSprite(require('../../assets/icons/search.svg'), 'itinerary-list__search-icon icon icon-search')
+                
             .itinerary-list__main
-                span.itinerary-item
+                span.itinerary-item(data-category="mountain" data-name="Mt. Bromo")
                     .itinerary-item__info
                         h5.itinerary-item__name Mt. Bromo
                         .itinerary-item__time 
                             | estimated time: 
                             span.accent #[<strong>5</strong>] Hours
                     .itinerary-item__icon
-                        img(src=require('../../assets/images/mountains.svg') width="63")
+                        img(src=require('../../assets/images/mountains.svg') height="32")
                         a.itinerary-item__view(href="#") view details
-                span.itinerary-item
+                span.itinerary-item(data-category="carousel" data-name="Batu")
                     .itinerary-item__info
-                        h5.itinerary-item__name Mt. Panderman
+                        h5.itinerary-item__name Batu
                         .itinerary-item__time 
                             | estimated time: 
                             span.accent #[<strong>5</strong>] Hours
                     .itinerary-item__icon
-                        img(src=require('../../assets/images/mountains.svg') width="63")
+                        img(src=require('../../assets/images/carousel.svg') height="32")
                         a.itinerary-item__view(href="#") view details
-                span.itinerary-item
+                span.itinerary-item(data-category="mountain" data-name="Mt. Semeru")
                     .itinerary-item__info
                         h5.itinerary-item__name Mt. Semeru
                         .itinerary-item__time 
                             | estimated time: 
                             span.accent #[<strong>5</strong>] Hours
                     .itinerary-item__icon
-                        img(src=require('../../assets/images/mountains.svg') width="63")
+                        img(src=require('../../assets/images/mountains.svg') height="32")
+                        a.itinerary-item__view(href="#") view details
+                span.itinerary-item(data-category="mountain" data-name="Mt. Panderman")
+                    .itinerary-item__info
+                        h5.itinerary-item__name Mt. Panderman
+                        .itinerary-item__time 
+                            | estimated time: 
+                            span.accent #[<strong>5</strong>] Hours
+                    .itinerary-item__icon
+                        img(src=require('../../assets/images/mountains.svg') height="32")
                         a.itinerary-item__view(href="#") view details
