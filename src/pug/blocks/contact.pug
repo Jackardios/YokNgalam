@@ -1,0 +1,25 @@
+section.contact#contact
+    h2.contact__title Contact
+    .contact__container
+        .contact__row
+            .contact-form
+                    input.contact-form__input.contact-form__input--100(placeholder="Your Email", name="email")
+                    input.contact-form__input.contact-form__input--50(placeholder="Company", name="company")
+                    input.contact-form__input.contact-form__input--50(placeholder="Subject", name="subject")
+                    textarea.contact-form__input.contact-form__input--100(placeholder="Your Message", name="message")
+                    button.contact-form__btn.btn.btn--secondary.btn--big Send Message
+            .contact-or OR
+            .contact-text
+                h3.contact-text__title You Can Find Us Here
+                ul.contact-list
+                    li.contact-item
+                        +svgSprite(require('../../assets/icons/home.svg'), 'contact-item__icon')
+                        span Jl.Danau Bratan sekian nomer sekian, Sawojajar Malang
+                            div.accent FIND ON MAPS
+                    li.contact-item
+                        +svgSprite(require('../../assets/icons/user.svg'), 'contact-item__icon')
+                        | (+62) 8816723812
+                    li.contact-item
+                        +svgSprite(require('../../assets/icons/user.svg'), 'contact-item__icon')
+                        | (+62) 8512371632
+                    

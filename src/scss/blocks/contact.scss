@@ -1,0 +1,98 @@
+$contact-grid: (
+    columns: 12,
+    gutter: 30px
+);
+.contact {
+    background: url('../assets/images/contact.jpg') 50% 50% no-repeat;
+    background-size: cover;
+    padding: 75px 0;
+    color: #fff;
+    &__title {
+        margin: 10px 0;
+        padding: 0;
+        font-size: 67px;
+        text-align: center;
+    }
+    &__container {
+        @include container;
+    }
+    &__row {
+        margin-top: 100px;
+        margin-bottom: 75px;
+        @include grid-container;
+        @include grid-collapse($contact-grid);
+    }
+    &-form, &-text {
+        @include grid-column(5);
+    }
+    $contact-form-grid: (
+        columns: 2,
+        gutter: 18px
+    );
+    &-form {
+        @include grid-container;
+        &__input {
+            padding: 22px 26px;
+            border: 1px solid #c7c7c7;
+            border-radius: 5px;
+            margin-top: 9px;
+            margin-bottom: 9px;
+            font-family: "Lato";
+            font-weight: 500;
+            font-style: italic;
+            &--50 {
+                @include grid-column(1, $contact-form-grid);
+            }
+            &--100 {
+                @include grid-column(2, $contact-form-grid);
+            }
+            @include placeholder {
+                color: #b9b9b9;
+            }
+        }
+        &__btn {
+            float: right;
+            margin: 9px 18px;
+        }
+    }
+    &-or {
+        @include grid-column(2);
+        text-align: center;
+        margin-top: 170px;
+        font-family: "Lato";
+        font-weight: bold;
+    }
+    &-text {
+        &__title {
+            font-size: 44px;
+            font-weight: 300;
+            font-family: "Lato";
+            margin: 10px 0;
+        }
+    }
+    &-list {
+        list-style: none;
+        margin: 50px 0 0 0;
+        padding: 0;
+
+    }
+    &-item {
+        font-size: 14px;
+        margin: 16px 0;
+        span {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        &__icon {
+            display: inline-block;
+            vertical-align: middle;
+            width: 12px;
+            margin-right: 8px;
+            fill: #fff;
+        }
+        .accent {
+            font-style: italic;
+            color: #fff772;
+        }
+    }
+}
