@@ -11,7 +11,7 @@ $city-grid: (
         padding-bottom: 100px;
     }
     &__content {
-        @include grid-container();
+        @include grid-container;
         @include grid-collapse($city-grid);
     }
     &__image {

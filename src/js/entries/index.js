@@ -2,6 +2,7 @@ import '../../scss/global.scss';
 require('webpack-jquery-ui/css');
 require('webpack-jquery-ui/datepicker');
 require('webpack-jquery-ui/droppable');
+require('jquery-ui-touch-punch');
 
 function parallax(layers) {
     var scrolled = $(window).scrollTop();

@@ -45,7 +45,7 @@ $interact-grid: (
         color: #777;
     }
     &__interact-wrap {
-        @include grid-container();
+        @include grid-container;
         @include grid-collapse($interact-grid);
         margin-top: 100px;
     }

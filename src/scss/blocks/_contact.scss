@@ -58,7 +58,7 @@ $contact-grid: (
         }
     }
     &-or {
-        @include grid-column(2);
+        @include grid-column(2, $contact-grid);
         text-align: center;
         margin-top: 160px;
         font-family: "Lato";
